@@ -23,5 +23,6 @@ Route::delete('/treinamentos/{id}', [TreinamentoController::class, 'destroy'])->
 Route::get('/treinamentos/edit/{id}', [TreinamentoController::class, 'edit'])->middleware('auth');
 Route::put('/treinamentos/update/{id}', [TreinamentoController::class, 'update'])->middleware('auth');
 Route::post('/treinamentos/join/{id}', [TreinamentoController::class, 'joinTreinamento'])->middleware('auth');
-Route::get('/treinamentos/meus-treinamentos', [TreinamentoController::class, 'meusTreinamentos'])->middleware('auth');
+Route::get('/dashboard', [TreinamentoController::class, 'dashboard'])->middleware('auth');
+Route::delete('/treinamentos/leave/{id}', [TreinamentoController::class, 'leaveTreinamento'])->middleware('auth');
 Auth::routes();
