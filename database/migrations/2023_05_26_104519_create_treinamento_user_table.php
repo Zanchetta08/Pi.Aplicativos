@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('treinamento_user', function (Blueprint $table) {
-            $table->foreignId('treinamento_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('treinamento_id');
+            $table->foreignId('user_id');
+            $table->integer("nota")->default('-1');
+            $table->integer("nota1")->default('-1');
+            $table->integer("nota2")->default('-1');
             $table->timestamps();
         });
     }

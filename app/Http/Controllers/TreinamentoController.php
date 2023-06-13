@@ -53,7 +53,7 @@ class TreinamentoController extends Controller
 
         $user = auth()->user();
         $hasUserJoined = false;
-
+        $treinamentos = $user->treinamentos;
         if($user) {
             $userTreinamentos = $user->treinamentos->toArray();
 
@@ -64,14 +64,14 @@ class TreinamentoController extends Controller
             }
         }
 
-        return view('treinamentos.show', ['treinamento' => $treinamento, 'hasUserJoined' => $hasUserJoined]);
+        return view('treinamentos.show', ['treinamento' => $treinamento, 'hasUserJoined' => $hasUserJoined, 'treinamentos' => $treinamentos]);
 
     }
 
     public function destroy($id) {
 
-        Treinamento::findOrFail($id)->delete();
-
+        Treinamento::findOrFail($id)->delete();   
+        
         return redirect('/')->with('msg', 'Treinamento excluído com sucesso!');
     }
 
@@ -104,7 +104,7 @@ class TreinamentoController extends Controller
 
         $user = auth()->user();
         $treinamentos = $user->treinamentos;
-
+        
         return view('treinamentos.dashboard', ['treinamentos' => $treinamentos]);
     }
 
@@ -118,4 +118,120 @@ class TreinamentoController extends Controller
         
         return redirect('/')->with('msg', 'Presença cancelada no treinamento: ' . $treinamento->nome);
     }
+
+    public function quiz($id) {
+
+        $treinamento = Treinamento::findOrFail($id);
+
+        return view('treinamentos.quiz', ['treinamento' => $treinamento]);
+    }
+
+
+    public function quizUpdate(Request $request) {
+        $contador = 0;
+
+        if($request->resposta1 == 1){
+            $contador++;
+        }
+        if($request->resposta2 == 2){
+            $contador++;
+        }
+        if($request->resposta3 == 3){
+            $contador++;
+        }
+        if($request->resposta4 == 1){
+            $contador++;
+        }
+        if($request->resposta5 == 2){
+            $contador++;
+        }
+
+        $nota = $contador * 2;
+
+        $user = auth()->user();
+
+        $actualPivot = $user->treinamentos()->where('treinamento_id', $request->id)->first()->pivot;
+
+        $user->treinamentos()->updateExistingPivot($request->id, ['nota' => $nota]);
+        
+        
+        return redirect('/')->with('msg', 'Quiz finalizado com sucesso!');
+    }
+
+    public function case1($id) {
+
+        $treinamento = Treinamento::findOrFail($id);
+
+        return view('treinamentos.case1', ['treinamento' => $treinamento]);
+    }
+
+    public function case1Update(Request $request) {
+        $contador = 0;
+
+        if($request->resposta1 == 1){
+            $contador++;
+        }
+        if($request->resposta2 == 2){
+            $contador++;
+        }
+        if($request->resposta3 == 3){
+            $contador++;
+        }
+        if($request->resposta4 == 1){
+            $contador++;
+        }
+        if($request->resposta5 == 2){
+            $contador++;
+        }
+
+        $nota1 = $contador * 2;
+
+        $user = auth()->user();
+
+        $actualPivot = $user->treinamentos()->where('treinamento_id', $request->id)->first()->pivot;
+
+        $user->treinamentos()->updateExistingPivot($request->id, ['nota1' => $nota1]);
+        
+        
+        return redirect('/')->with('msg', 'Case 1 finalizado com sucesso!');
+    }
+
+    public function case2($id) {
+
+        $treinamento = Treinamento::findOrFail($id);
+
+        return view('treinamentos.case2', ['treinamento' => $treinamento]);
+    }
+
+    public function case2Update(Request $request) {
+        $contador = 0;
+
+        if($request->resposta1 == 1){
+            $contador++;
+        }
+        if($request->resposta2 == 2){
+            $contador++;
+        }
+        if($request->resposta3 == 3){
+            $contador++;
+        }
+        if($request->resposta4 == 1){
+            $contador++;
+        }
+        if($request->resposta5 == 2){
+            $contador++;
+        }
+
+        $nota2 = $contador * 2;
+
+        $user = auth()->user();
+
+        $actualPivot = $user->treinamentos()->where('treinamento_id', $request->id)->first()->pivot;
+
+        $user->treinamentos()->updateExistingPivot($request->id, ['nota2' => $nota2]);
+        
+        
+        return redirect('/')->with('msg', 'Case 2 finalizado com sucesso!');
+    }
+
 }

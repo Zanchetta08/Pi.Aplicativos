@@ -15,6 +15,9 @@
                         <h5 class="card-title">{{ $treinamento->nome }}</h5>
                         <p class="card-participants">{{ count($treinamento->users) }} Participantes</p>
                         <a href="/treinamentos/{{ $treinamento->id }}" class="btn btn-primary">Saber mais</a>
+                        <p>{{ $treinamento->pivot->nota }}</p>
+                        <p>{{ $treinamento->pivot->nota1 }}</p>
+                        <p>{{ $treinamento->pivot->nota2 }}</p>
                     </div>
                 </div>
             @endforeach
