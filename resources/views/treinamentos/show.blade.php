@@ -43,42 +43,46 @@
                             @endif 
                         @endif 
                     @endforeach
-                    @if(!$hasUserJoined)
-                        @if(count($treinamento->users) < $treinamento->quantMax)
-                            <form action="/treinamentos/join/{{ $treinamento->id }}" method="POST">
-                            @csrf
-                            <a href="/treinamentos/join/{{ $treinamento->id }}" 
-                                class="btn btn-primary" 
-                                id="event-submit" 
-                                onClick="event.preventDefault();
-                                this.closest('form').submit();">
-                                Confirmar Presença
-                            </a>
-                            </form>
-                        @else 
-                            <h3 class="avisoQuiz">Quantidade máxima de inscritos atingido!</h3>
-                        @endif
-                    @else
-                    @foreach($treinamentos as $treinamentoo)
-                        @if($treinamentoo->id == $treinamento->id)
-                            @if($treinamentoo->pivot->nota == -1)
-                            <form action="/treinamentos/leave/{{ $treinamento->id }}" method="POST">
+                    @if(Auth::user()->acesso == 'admin' || Auth::user()->acesso == 'aluno')
+                        @if(!$hasUserJoined)
+                            @if(count($treinamento->users) < $treinamento->quantMax)
+                                <form action="/treinamentos/join/{{ $treinamento->id }}" method="POST">
                                 @csrf
-                                @method("DELETE")
-                                <button type="submit" class="btn btn-danger delete-btn">Sair do Treinamento</button>
-                            </form>
+                                <a href="/treinamentos/join/{{ $treinamento->id }}" 
+                                    class="btn btn-primary" 
+                                    id="event-submit" 
+                                    onClick="event.preventDefault();
+                                    this.closest('form').submit();">
+                                    Confirmar Presença
+                                </a>
+                                </form>
+                            @else 
+                                <h3 class="avisoQuiz">Quantidade máxima de inscritos atingido!</h3>
                             @endif
+                        @else
+                        @foreach($treinamentos as $treinamentoo)
+                            @if($treinamentoo->id == $treinamento->id)
+                                @if($treinamentoo->pivot->nota == -1)
+                                <form action="/treinamentos/leave/{{ $treinamento->id }}" method="POST">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" class="btn btn-danger delete-btn">Sair do Treinamento</button>
+                                </form>
+                                @endif
+                            @endif
+                        @endforeach
                         @endif
-                    @endforeach
                     @endif
-                    <div class="botoes">
-                        <a href="/treinamentos/edit/{{ $treinamento->id }}" class="btn btn-info edit-btn">Editar</a> 
-                        <form action="/treinamentos/{{ $treinamento->id }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger delete-btn">Deletar</button>
-                        </form>
-                    </div>
+                    @if(Auth::user()->acesso == 'admin')
+                        <div class="botoes">
+                            <a href="/treinamentos/edit/{{ $treinamento->id }}" class="btn btn-info edit-btn">Editar</a> 
+                            <form action="/treinamentos/{{ $treinamento->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger delete-btn">Deletar</button>
+                            </form>
+                        </div>
+                    @endif
                     @foreach($treinamentos as $treinamentoo)
                         @if($treinamentoo->id == $treinamento->id)
                             @if($treinamentoo->pivot->nota == -1)

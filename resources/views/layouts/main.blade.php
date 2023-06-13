@@ -28,21 +28,27 @@
                         @guest
                 
                         @else
-                            <li class="nav-item">
-                                <a href="/dashboard" class="nav-link">Dashboard</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/" class="nav-link">Treinamentos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/treinamentos/criar" class="nav-link">Criar Treinamentos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/vagas" class="nav-link">Vagas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/vagas/criar" class="nav-link">Criar Vagas</a>
-                            </li>
+                            @if(Auth::user()->acesso == 'aluno' || Auth::user()->acesso == 'admin')
+                                <li class="nav-item">
+                                    <a href="/dashboard" class="nav-link">Dashboard</a>
+                                </li>
+                            @endif
+                                <li class="nav-item">
+                                    <a href="/" class="nav-link">Treinamentos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/vagas" class="nav-link">Vagas</a>
+                                </li>
+                            @if(Auth::user()->acesso == 'admin')
+                                <li class="nav-item">
+                                    <a href="/treinamentos/criar" class="nav-link">Criar Treinamentos</a>
+                                </li>
+                            @endif
+                            @if(Auth::user()->acesso == 'empresa' || Auth::user()->acesso == 'admin')
+                                <li class="nav-item">
+                                    <a href="/vagas/criar" class="nav-link">Criar Vagas</a>
+                                </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
