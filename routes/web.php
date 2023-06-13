@@ -17,3 +17,4 @@ use App\Http\Controllers\TreinamentoController;
 
 Route::get('/', [TreinamentoController::class, 'index']);
 Route::get('/treinamentos/criar', [TreinamentoController::class, 'criar']);
+Route::post('/treinamentos', [TreinamentoController::class, 'store']);
