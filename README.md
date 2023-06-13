@@ -43,6 +43,21 @@ php artisan key:generate
 ```
 
 
+Saia do terminal do Container e vá para o terminal do Projeto
+
+
+Instalar o Electron
+```sh
+npm install electron
+```
+
+
+Rodar o Electron
+```sh
+npm run electron
+```
+
+
 Acesse o projeto
 [http://localhost:8080](http://localhost:8080)
 
