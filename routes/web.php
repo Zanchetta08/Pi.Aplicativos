@@ -19,3 +19,5 @@ Route::get('/', [TreinamentoController::class, 'index']);
 Route::get('/treinamentos/criar', [TreinamentoController::class, 'create']);
 Route::get('/treinamentos/{id}', [TreinamentoController::class, 'show']);
 Route::post('/treinamentos', [TreinamentoController::class, 'store']);
+
+Auth::routes();

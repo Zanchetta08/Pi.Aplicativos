@@ -22,7 +22,7 @@ class TreinamentoController extends Controller
 
         
 
-        return view('home', ['treinamentos' => $treinamentos, 'search'=>$search]);
+        return view('welcome', ['treinamentos' => $treinamentos, 'search'=>$search]);
     }
 
     public function create() {
