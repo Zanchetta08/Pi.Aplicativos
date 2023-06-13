@@ -12,6 +12,6 @@ class Treinamento extends Model
     protected $guarded = [];
 
      public function users() {
-        return $this->belongsToMany('App\Models\User');
+        return $this->belongsToMany('App\Models\User')->withTimestamps()->withPivot(['nota', 'nota1', 'nota2']);
      }
 }
