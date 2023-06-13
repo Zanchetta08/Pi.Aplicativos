@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\TreinamentoController;
+
+Route::get('/', [TreinamentoController::class, 'index']);
+Route::get('/treinamentos/criar', [TreinamentoController::class, 'criar']);

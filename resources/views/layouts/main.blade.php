@@ -28,7 +28,7 @@
                             <a href="/" class="nav-link">Treinamentos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link">Criar Treinamentos</a>
+                            <a href="/treinamentos/criar" class="nav-link">Criar Treinamentos</a>
                         </li>
                         <li class="nav-item">
                             <a href="/" class="nav-link">Entrar</a>
@@ -41,5 +41,7 @@
             </nav>
         </header>
         @yield('content')
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
 </html>
