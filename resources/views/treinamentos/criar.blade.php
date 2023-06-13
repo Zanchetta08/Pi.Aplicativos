@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label for="nome">Descrição:</label>
-            <textarea name="desc" id="descricaoTrei" class="form-control" placeholder="Descrição do Treinamento"></textarea>
+            <textarea name="descricao" id="descricaoTrei" class="form-control" placeholder="Descrição do Treinamento"></textarea>
         </div>
         <div class="form-group">
             <label for="nome">Carga horária do Treinamento:</label>
@@ -22,19 +22,19 @@
         </div>
         <div class="form-group">
             <label for="nome">Início das Inscrições:</label>
-            <input type="date" class="form-control" id="inicioInscTrei" name="iniInsc" placeholder="Data do Treinamento">
+            <input type="date" class="form-control" id="inicioInscTrei" name="inscIni" placeholder="Data do Treinamento">
         </div>
         <div class="form-group">
             <label for="nome">Fim das Inscrições:</label>
-            <input type="date" class="form-control" id="fimInscTrei" name="fimInsc" placeholder="Nome do Treinamento">
+            <input type="date" class="form-control" id="fimInscTrei" name="inscFim" placeholder="Nome do Treinamento">
         </div>
         <div class="form-group">
             <label for="nome">Início do Treinamento:</label>
-            <input type="date" class="form-control" id="inicioTreiTrei" name="iniTrei" placeholder="Nome do Treinamento">
+            <input type="date" class="form-control" id="inicioTreiTrei" name="treiIni" placeholder="Nome do Treinamento">
         </div>
         <div class="form-group">
             <label for="nome">Fim do Treinamento:</label>
-            <input type="date" class="form-control" id="fimTreiTrei" name="fimTrei" placeholder="Nome do Treinamento">
+            <input type="date" class="form-control" id="fimTreiTrei" name="treiFim" placeholder="Nome do Treinamento">
         </div>
         <div class="form-group">
             <label for="nome">Quantidade mínima de participantes:</label>
