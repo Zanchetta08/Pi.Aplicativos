@@ -39,7 +39,7 @@ class StoreUpdateFromRequestVagas extends FormRequest
             'desc' => [
                 'required',
                 'string',
-                'max:255',
+                'max:2000',
                 'min:1'
             ],
             'requisitos' => [

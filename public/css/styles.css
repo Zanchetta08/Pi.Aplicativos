@@ -138,6 +138,16 @@ header {
     padding: 10px;
 }
 
+.msgerror {
+    background-color: #ff5555;
+    color: #000000;
+    border: 1px solid #df7070;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 10px;
+}
+
 #info-container {
     margin-top: 30px;
 }
@@ -179,3 +189,4 @@ header {
 #errors-preencher {
     color: red;
 }
+

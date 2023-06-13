@@ -33,7 +33,7 @@ class StoreUpdateFromRequestTreinamento extends FormRequest
             'descricao' => [
                 'required',
                 'string',
-                'max:255',
+                'max:2000',
                 'min:1'
             ],
             'cargaHr' => [

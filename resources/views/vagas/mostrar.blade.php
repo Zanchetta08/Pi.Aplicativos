@@ -8,9 +8,12 @@
         <div class="row">
                 <div id="info-container" class="col-md-6">
                     <h1>{{ $vaga->titulo }}</h1>
-                    <p>Empresa: {{ $vaga->empresa }}</p>
-                    <p>Requisitos: {{ $vaga->requisitos }}</p>
-                    <p>Salário: {{ $vaga->salario }}</p>
+                        <h3>Empresa: </h3>
+                        <p>{{ $vaga->empresa }}</p>              
+                        <h3>Requisitos: </h3>
+                        <p>{{ $vaga->requisitos }}</p>
+                        <h3>Salário: </h3>
+                        <p>{{ $vaga->salario }}</p>
                     <h3>Sobre a vaga:</h3>
                     <p class="event-description"> {{ $vaga->desc }}</p>
                     @if(!$hasUserJoined && $hasUserNota)
@@ -40,6 +43,16 @@
                             <button type="submit" class="btn btn-danger delete-btn">Deletar</button>
                         </form>
                     </div>
+                </div>
+                <div id="info-container" class="col-md-6">
+                    <h3>Lista de usuários inscritos:</h3>
+                    @if(count($inscritos) == 0)
+                        <p>Não há inscritos nessa vaga!</p>
+                    @else
+                        @foreach($inscritos as $inscrito)
+                            <p>{{ $loop->index+1 }} - {{ $inscrito->name }}</p>
+                        @endforeach
+                    @endif
                 </div>
         </div>
     </div>

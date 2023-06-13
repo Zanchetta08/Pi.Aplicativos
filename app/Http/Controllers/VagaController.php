@@ -8,8 +8,6 @@ use App\Models\Vaga;
 
 use App\Http\Requests\StoreUpdateFromRequestVagas;
 
-
-
 use App\Models\Treinamento;
 
 class VagaController extends Controller
@@ -74,7 +72,9 @@ class VagaController extends Controller
             }
         }
 
-        return view('vagas.mostrar', ['vaga' => $vaga, 'hasUserJoined' => $hasUserJoined, 'hasUserNota' => $hasUserNota]);
+        $inscritos = $vaga->users;
+
+        return view('vagas.mostrar', ['vaga' => $vaga, 'hasUserJoined' => $hasUserJoined, 'hasUserNota' => $hasUserNota, 'inscritos' => $inscritos]);
     }
 
     public function destroy($id){
