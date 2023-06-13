@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 
 use App\Models\Treinamento;
+
+use App\Models\Vaga;
 
 use App\Http\Requests\StoreUpdateFromRequestTreinamento;
 
@@ -42,9 +46,37 @@ class TreinamentoController extends Controller
         $treinamento->quantMin = $request->quantMin;
         $treinamento->quantMax = $request->quantMax;
 
-        $treinamento->save();
+        $date1 = $treinamento->inscIni;
+        $date1 = Carbon::parse($date1);
 
-        return redirect("/")->with('msg', 'Treinamento criado com sucesso!');
+        $date2 = $treinamento->inscFim;
+        $date2 = Carbon::parse($date2);
+
+        $result1 = $date1->gt($date2);
+
+        $date3 = $treinamento->treiIni;
+        $date3 = Carbon::parse($date3);
+
+        $date4 = $treinamento->treiFim;
+        $date4 = Carbon::parse($date4);
+
+        $result2 = $date3->gt($date4);
+
+        if($result1 == true && $result2 == true){
+            return redirect("/treinamentos/criar")->with('msgerror', 'Data invalida do treinamento e das inscriçoes');
+        }elseif($result1 == true) {
+            return redirect("/treinamentos/criar")->with('msgerror', 'Data invalida das inscriçoes');
+        }elseif($result2 == true) {
+            return redirect("/treinamentos/criar")->with('msgerror', 'Data invalida do treinamento');
+        }else {
+            if($treinamento->quantMin > $treinamento->quantMax){
+                return redirect("/treinamentos/criar")->with('msgerror', 'Quantidade minima nao pode ser maior que a maxima');
+            }else {
+                $treinamento->save();
+                return redirect("/")->with('msg', 'Treinamento criado com sucesso!');
+            }
+            
+        }
     }
 
     public function show($id) {
@@ -84,9 +116,48 @@ class TreinamentoController extends Controller
 
     public function update(StoreUpdateFromRequestTreinamento $request) {
         
-        Treinamento::findOrFail($request->id)->update($request->all());
+        $treinamento = new Treinamento;
+        $treinamento->nome = $request->nome;
+        $treinamento->descricao = $request->descricao;
+        $treinamento->cargaHr = $request->cargaHr;
+        $treinamento->inscIni = $request->inscIni;
+        $treinamento->inscFim = $request->inscFim;
+        $treinamento->treiIni = $request->treiIni;
+        $treinamento->treiFim = $request->treiFim;
+        $treinamento->quantMin = $request->quantMin;
+        $treinamento->quantMax = $request->quantMax;
 
-        return redirect('/')->with('msg', 'Treinamento editado com sucesso!');
+        $date1 = $treinamento->inscIni;
+        $date1 = Carbon::parse($date1);
+
+        $date2 = $treinamento->inscFim;
+        $date2 = Carbon::parse($date2);
+
+        $result1 = $date1->gt($date2);
+
+        $date3 = $treinamento->treiIni;
+        $date3 = Carbon::parse($date3);
+
+        $date4 = $treinamento->treiFim;
+        $date4 = Carbon::parse($date4);
+
+        $result2 = $date3->gt($date4);
+
+        if($result1 == true && $result2 == true){
+            return redirect("/treinamentos/edit/{$request->id}")->with('msgerror', 'Data invalida do treinamento e das inscriçoes');
+        }elseif($result1 == true) {
+            return redirect("/treinamentos/edit/{$request->id}")->with('msgerror', 'Data invalida das inscriçoes');
+        }elseif($result2 == true) {
+            return redirect("/treinamentos/edit/{$request->id}")->with('msgerror', 'Data invalida do treinamento');
+        }else {
+            if($treinamento->quantMin > $treinamento->quantMax){
+                return redirect("/treinamentos/edit/{$request->id}")->with('msgerror', 'Quantidade minima nao pode ser maior que a maxima');
+            }else {
+                Treinamento::findOrFail($request->id)->update($request->all());
+                return redirect('/')->with('msg', 'Treinamento editado com sucesso!');
+            }
+            
+        }    
     }
 
     public function joinTreinamento($id) {
@@ -104,8 +175,9 @@ class TreinamentoController extends Controller
 
         $user = auth()->user();
         $treinamentos = $user->treinamentos;
+        $vagas = $user->vagas;
         
-        return view('treinamentos.dashboard', ['treinamentos' => $treinamentos]);
+        return view('treinamentos.dashboard', ['treinamentos' => $treinamentos, 'vagas' => $vagas]);
     }
 
     public function leaveTreinamento($id) {
