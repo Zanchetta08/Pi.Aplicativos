@@ -35,14 +35,16 @@
                         </form>
                     @else
                     @endif
-                    <div class="botoes">
-                        <a href="/vagas/edit/{{ $vaga->id }}" class="btn btn-info edit-btn">Editar</a> 
-                        <form action="/vagas/{{ $vaga->id }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger delete-btn">Deletar</button>
-                        </form>
-                    </div>
+                    @if(Auth::user()->acesso == 'empresa' || Auth::user()->acesso == 'admin')
+                        <div class="botoes">
+                            <a href="/vagas/edit/{{ $vaga->id }}" class="btn btn-info edit-btn">Editar</a> 
+                            <form action="/vagas/{{ $vaga->id }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger delete-btn">Deletar</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
                 <div id="info-container" class="col-md-6">
                     <h3>Lista de usuários inscritos:</h3>
