@@ -114,3 +114,16 @@ header {
     font-size: 14px;
     color: #757575;
 }
+
+#event-create-container {
+    padding: 30px;
+}
+
+#event-create-container label {
+    font-weight: bold;
+}
+
+#event-create-container input,
+#event-create-container textarea {
+    font-size: 12px;
+}
