@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\TreinamentoController;
+use App\Http\Controllers\VagaController;
 
 Route::get('/', [TreinamentoController::class, 'index'])->middleware('auth');
 Route::get('/treinamentos/criar', [TreinamentoController::class, 'create'])->middleware('auth');
@@ -23,6 +24,19 @@ Route::delete('/treinamentos/{id}', [TreinamentoController::class, 'destroy'])->
 Route::get('/treinamentos/edit/{id}', [TreinamentoController::class, 'edit'])->middleware('auth');
 Route::put('/treinamentos/update/{id}', [TreinamentoController::class, 'update'])->middleware('auth');
 Route::post('/treinamentos/join/{id}', [TreinamentoController::class, 'joinTreinamento'])->middleware('auth');
-Route::get('/dashboard', [TreinamentoController::class, 'dashboard'])->middleware('auth');
 Route::delete('/treinamentos/leave/{id}', [TreinamentoController::class, 'leaveTreinamento'])->middleware('auth');
+
+Route::get('/dashboard', [TreinamentoController::class, 'dashboard'])->middleware('auth');
+
+Route::get('/vagas/criar', [VagaController::class, 'create'])->middleware('auth');
+Route::get('/vagas', [VagaController::class, 'index'])->middleware('auth');
+Route::get('/vagas/{id}', [VagaController::class, 'show'])->middleware('auth');
+Route::post('/vagas', [VagaController::class, 'store'])->middleware('auth');
+Route::delete('/vagas/{id}', [VagaController::class, 'destroy'])->middleware('auth');
+Route::get('/vagas/edit/{id}', [VagaController::class, 'edit'])->middleware('auth');
+Route::put('/vagas/update/{id}', [VagaController::class, 'update'])->middleware('auth');
+Route::post('/vagas/join/{id}', [VagaController::class, 'joinVaga'])->middleware('auth');
+Route::delete('/vagas/leave/{id}', [VagaController::class, 'leaveVaga'])->middleware('auth');
+
+
 Auth::routes();

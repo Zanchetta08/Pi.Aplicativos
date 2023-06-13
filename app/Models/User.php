@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function treinamentos() {
         return $this->belongsToMany('App\Models\Treinamento');
     }
+
+    public function vagas() {
+        return $this->belongsToMany('App\Models\Vaga');
+    }
 }
