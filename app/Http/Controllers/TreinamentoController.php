@@ -82,7 +82,7 @@ class TreinamentoController extends Controller
     public function show($id) {
 
         $treinamento = Treinamento::findOrFail($id);
-
+        $inscritos = $treinamento->users;
         $user = auth()->user();
         $hasUserJoined = false;
         $treinamentos = $user->treinamentos;
@@ -96,7 +96,7 @@ class TreinamentoController extends Controller
             }
         }
 
-        return view('treinamentos.show', ['treinamento' => $treinamento, 'hasUserJoined' => $hasUserJoined, 'treinamentos' => $treinamentos]);
+        return view('treinamentos.show', ['treinamento' => $treinamento, 'hasUserJoined' => $hasUserJoined, 'treinamentos' => $treinamentos, 'inscritos' => $inscritos]);
 
     }
 
