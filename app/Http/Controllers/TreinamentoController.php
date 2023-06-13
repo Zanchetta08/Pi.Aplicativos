@@ -33,12 +33,12 @@ class TreinamentoController extends Controller
 
         $treinamento = new Treinamento;
         $treinamento->nome = $request->nome;
-        $treinamento->descricao = $request->desc;
+        $treinamento->descricao = $request->descricao;
         $treinamento->cargaHr = $request->cargaHr;
-        $treinamento->inscIni = $request->iniInsc;
-        $treinamento->inscFim = $request->fimInsc;
-        $treinamento->treiIni = $request->iniTrei;
-        $treinamento->treiFim = $request->fimTrei;
+        $treinamento->inscIni = $request->inscIni;
+        $treinamento->inscFim = $request->inscFim;
+        $treinamento->treiIni = $request->treiIni;
+        $treinamento->treiFim = $request->treiFim;
         $treinamento->quantMin = $request->quantMin;
         $treinamento->quantMax = $request->quantMax;
 
@@ -60,5 +60,19 @@ class TreinamentoController extends Controller
         Treinamento::findOrFail($id)->delete();
 
         return redirect('/')->with('msg', 'Treinamento excluído com sucesso!');
+    }
+
+    public function edit($id) {
+
+        $treinamento = Treinamento::findOrFail($id);
+
+        return view('treinamentos.edit', ['treinamento' => $treinamento]);
+    }
+
+    public function update(Request $request) {
+        
+        Treinamento::findOrFail($request->id)->update($request->all());
+
+        return redirect('/')->with('msg', 'Treinamento editado com sucesso!');
     }
 }

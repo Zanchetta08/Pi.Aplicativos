@@ -20,4 +20,6 @@ Route::get('/treinamentos/criar', [TreinamentoController::class, 'create'])->mid
 Route::get('/treinamentos/{id}', [TreinamentoController::class, 'show'])->middleware('auth');
 Route::post('/treinamentos', [TreinamentoController::class, 'store'])->middleware('auth');
 Route::delete('/treinamentos/{id}', [TreinamentoController::class, 'destroy'])->middleware('auth');
+Route::get('/treinamentos/edit/{id}', [TreinamentoController::class, 'edit'])->middleware('auth');
+Route::put('/treinamentos/update/{id}', [TreinamentoController::class, 'update']);
 Auth::routes();
