@@ -161,3 +161,7 @@ header {
 #info-container #event-submit {
     margin: 20px 0;
 }
+
+.container {
+    padding: 70px;
+}

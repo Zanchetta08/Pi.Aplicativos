@@ -18,6 +18,11 @@
                     <h3>Sobre o treinamento:</h3>
                     <p class="event-description"> {{ $treinamento->descricao }}</p>
                     <a href="" class="btn btn-primary" id="event-submit">Confirmar Presença</a>
+                    <form action="/treinamentos/{{ $treinamento->id }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger delete-btn">Deletar</button>
+                    </form>
                 </div>
         </div>
     </div>
