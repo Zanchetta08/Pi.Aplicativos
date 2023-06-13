@@ -15,7 +15,7 @@ class TreinamentoController extends Controller
         return view('home', ['treinamentos' => $treinamentos]);
     }
 
-    public function criar() {
+    public function create() {
         return view('treinamentos.criar');
     }
 
@@ -34,6 +34,14 @@ class TreinamentoController extends Controller
 
         $treinamento->save();
 
-        return redirect("/");
+        return redirect("/")->with('msg', 'Treinamento criado com sucesso!');
+    }
+
+    public function show($id) {
+
+        $treinamento = Treinamento::findOrFail($id);
+
+        return view('treinamentos.show', ['treinamento' => $treinamento]);
+
     }
 }
