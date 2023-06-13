@@ -138,26 +138,26 @@ header {
     padding: 10px;
 }
 
-.info-container {
+#info-container {
     margin-top: 30px;
 }
 
-.info-container h1 {
+#info-container h1 {
     font-size: 36px;
     font-weight: 900;
 }
 
-.info-container p {
+#info-container p {
     margin: 0;  
     font-size: 14px;
     display: flex;
 }
 
-.info-container h3 {
-    font-size: 500px;
+#info-container h3 {
+    font-size: 20px;
     font-weight: bold;
 }
 
-.info-container #event-submit {
+#info-container #event-submit {
     margin: 20px 0;
 }

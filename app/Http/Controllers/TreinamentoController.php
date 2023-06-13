@@ -10,9 +10,19 @@ class TreinamentoController extends Controller
 {
     public function index() {
 
-        $treinamentos = Treinamento::all();
+        $search = request('search');
+        if($search){
+            $treinamentos = Treinamento::where([
+                ['nome', 'like', '%'.$search.'%']
+            ])->get();
 
-        return view('home', ['treinamentos' => $treinamentos]);
+        } else {
+            $treinamentos = Treinamento::all();
+        }
+
+        
+
+        return view('home', ['treinamentos' => $treinamentos, 'search'=>$search]);
     }
 
     public function create() {
