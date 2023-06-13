@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "electron": "electron .",
         "dev": "vite",
         "build": "vite build"
     },
@@ -10,5 +11,8 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "vite": "^3.0.0"
+    },
+    "dependencies": {
+        "electron": "^24.3.1"
     }
 }
