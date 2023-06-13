@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
 
     public function treinamentos() {
-        return $this->belongsToMany('App\Models\Treinamento');
+        return $this->belongsToMany('App\Models\Treinamento')->withTimestamps()->withPivot(['nota', 'nota1', 'nota2']);
     }
 
     public function vagas() {

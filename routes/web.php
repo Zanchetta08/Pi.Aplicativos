@@ -40,3 +40,12 @@ Route::delete('/vagas/leave/{id}', [VagaController::class, 'leaveVaga'])->middle
 
 
 Auth::routes();
+
+Route::get('/treinamentos/quiz/{id}', [TreinamentoController::class, 'quiz'])->middleware('auth');
+Route::put('/treinamentos/quizUpdate/{id}', [TreinamentoController::class, 'quizUpdate'])->middleware('auth');
+
+Route::get('/treinamentos/case1/{id}', [TreinamentoController::class, 'case1'])->middleware('auth');
+Route::put('/treinamentos/case1Update/{id}', [TreinamentoController::class, 'case1Update'])->middleware('auth');
+
+Route::get('/treinamentos/case2/{id}', [TreinamentoController::class, 'case2'])->middleware('auth');
+Route::put('/treinamentos/case2Update/{id}', [TreinamentoController::class, 'case2Update'])->middleware('auth');
