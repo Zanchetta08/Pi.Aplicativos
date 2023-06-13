@@ -17,7 +17,8 @@
                     <p>Quantidade máxima de participantes: {{ $treinamento->quantMax }}</p>
                     <h3>Sobre o treinamento:</h3>
                     <p class="event-description"> {{ $treinamento->descricao }}</p>
-                    <form action="/treinamentos/join/{{ $treinamento->id }}" method="POST">
+                    @if(!$hasUserJoined)
+                        <form action="/treinamentos/join/{{ $treinamento->id }}" method="POST">
                         @csrf
                         <a href="/treinamentos/join/{{ $treinamento->id }}" 
                             class="btn btn-primary" 
@@ -26,7 +27,14 @@
                             this.closest('form').submit();">
                             Confirmar Presença
                         </a>
-                    </form>
+                        </form>
+                    @else
+                        <form action="/treinamentos/leave/{{ $treinamento->id }}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="btn btn-danger delete-btn">Sair do Treinamento</button>
+                        </form>
+                    @endif
                     <a href="/treinamentos/edit/{{ $treinamento->id }}" class="btn btn-info edit-btn">Editar</a> 
                     <form action="/treinamentos/{{ $treinamento->id }}" method="POST">
                         @csrf

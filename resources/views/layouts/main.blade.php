@@ -29,7 +29,7 @@
                 
                         @else
                             <li class="nav-item">
-                                <a href="/treinamentos/meus-treinamentos" class="nav-link">Meus Treinamentos</a>
+                                <a href="/dashboard" class="nav-link">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a href="/" class="nav-link">Treinamentos</a>

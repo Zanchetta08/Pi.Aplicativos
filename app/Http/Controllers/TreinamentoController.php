@@ -51,7 +51,20 @@ class TreinamentoController extends Controller
 
         $treinamento = Treinamento::findOrFail($id);
 
-        return view('treinamentos.show', ['treinamento' => $treinamento]);
+        $user = auth()->user();
+        $hasUserJoined = false;
+
+        if($user) {
+            $userTreinamentos = $user->treinamentos->toArray();
+
+            foreach($userTreinamentos as $userTreinamento) {
+                if($userTreinamento['id'] == $id) {
+                    $hasUserJoined = true;
+                }
+            }
+        }
+
+        return view('treinamentos.show', ['treinamento' => $treinamento, 'hasUserJoined' => $hasUserJoined]);
 
     }
 
@@ -84,14 +97,25 @@ class TreinamentoController extends Controller
 
         $treinamento = Treinamento::findOrFail($id);
 
-        return redirect('/')->with('msg', 'Presença confirmada no treinamento ' . $treinamento->nome . '!!');
+        return redirect('/')->with('msg', 'Presença confirmada no treinamento: ' . $treinamento->nome);
     }
 
-    public function meusTreinamentos() {
+    public function dashboard() {
+
         $user = auth()->user();
         $treinamentos = $user->treinamentos;
-        $treinamentosAsParticipant = $user->treinamentos;
 
-        return view('treinamentos.meusTreinamentos', ['treinamentos' => $treinamentos, 'treinamentosAsParticipant' => $treinamentosAsParticipant]);
+        return view('treinamentos.dashboard', ['treinamentos' => $treinamentos]);
+    }
+
+    public function leaveTreinamento($id) {
+        
+        $user = auth()->user();
+
+        $user->treinamentos()->detach($id);
+
+        $treinamento = Treinamento::findOrFail($id);
+        
+        return redirect('/')->with('msg', 'Presença cancelada no treinamento: ' . $treinamento->nome);
     }
 }
