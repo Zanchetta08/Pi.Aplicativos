@@ -54,4 +54,11 @@ class TreinamentoController extends Controller
         return view('treinamentos.show', ['treinamento' => $treinamento]);
 
     }
+
+    public function destroy($id) {
+
+        Treinamento::findOrFail($id)->delete();
+
+        return redirect('/')->with('msg', 'Treinamento excluído com sucesso!');
+    }
 }

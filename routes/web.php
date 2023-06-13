@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TreinamentoController;
 
-Route::get('/', [TreinamentoController::class, 'index']);
-Route::get('/treinamentos/criar', [TreinamentoController::class, 'create']);
-Route::get('/treinamentos/{id}', [TreinamentoController::class, 'show']);
-Route::post('/treinamentos', [TreinamentoController::class, 'store']);
-
+Route::get('/', [TreinamentoController::class, 'index'])->middleware('auth');
+Route::get('/treinamentos/criar', [TreinamentoController::class, 'create'])->middleware('auth');
+Route::get('/treinamentos/{id}', [TreinamentoController::class, 'show'])->middleware('auth');
+Route::post('/treinamentos', [TreinamentoController::class, 'store'])->middleware('auth');
+Route::delete('/treinamentos/{id}', [TreinamentoController::class, 'destroy'])->middleware('auth');
 Auth::routes();
