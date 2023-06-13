@@ -22,10 +22,9 @@
             @foreach($treinamentos as $treinamento)
             <div class="card col-md-3">
                 <img src="/img/logo.png" alt="{{ $treinamento->nome }}">
-                <div class="card-body">
-                        
+                <div class="card-body">        
                     <h5 class="card-title">{{ $treinamento->nome }}</h5>
-                    <p class="card-participants">X Inscritos</p>
+                    <p class="card-participants">{{ count($treinamento->users) }} Participantes</p>
                     <a href="/treinamentos/{{ $treinamento->id }}" class="btn btn-primary">Saber mais</a>
                 </div>
             </div>

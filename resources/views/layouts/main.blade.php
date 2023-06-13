@@ -29,6 +29,9 @@
                 
                         @else
                             <li class="nav-item">
+                                <a href="/treinamentos/meus-treinamentos" class="nav-link">Meus Treinamentos</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="/" class="nav-link">Treinamentos</a>
                             </li>
                             <li class="nav-item">
