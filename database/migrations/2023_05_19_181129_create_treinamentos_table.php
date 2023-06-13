@@ -13,15 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('treinamentos', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('acesso')->default('aluno');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
+            $table->string("nome");
+            $table->text("descricao");
+            $table->integer("cargaHr");
+            $table->date("inscIni");
+            $table->date("inscFim");
+            $table->date("treiIni");
+            $table->date("treiFim");
+            $table->integer("quantMin");
+            $table->integer("quantMax");
         });
     }
 
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('treinamentos');
     }
 };

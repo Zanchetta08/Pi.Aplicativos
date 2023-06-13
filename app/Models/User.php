@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function treinamentos() {
+        return $this->belongsToMany('App\Models\Treinamento')->withTimestamps()->withPivot(['nota', 'nota1', 'nota2']);
+    }
+
+    public function vagas() {
+        return $this->belongsToMany('App\Models\Vaga');
+    }
 }
