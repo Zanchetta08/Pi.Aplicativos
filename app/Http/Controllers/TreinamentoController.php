@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\Treinamento;
 
+use App\Http\Requests\StoreUpdateFromRequestTreinamento;
+
 class TreinamentoController extends Controller
 {
     public function index() {
@@ -20,8 +22,6 @@ class TreinamentoController extends Controller
             $treinamentos = Treinamento::all();
         }
 
-        
-
         return view('welcome', ['treinamentos' => $treinamentos, 'search'=>$search]);
     }
 
@@ -29,7 +29,7 @@ class TreinamentoController extends Controller
         return view('treinamentos.criar');
     }
 
-    public function store(Request $request) {
+    public function store(StoreUpdateFromRequestTreinamento $request) {
 
         $treinamento = new Treinamento;
         $treinamento->nome = $request->nome;
@@ -82,7 +82,7 @@ class TreinamentoController extends Controller
         return view('treinamentos.edit', ['treinamento' => $treinamento]);
     }
 
-    public function update(Request $request) {
+    public function update(StoreUpdateFromRequestTreinamento $request) {
         
         Treinamento::findOrFail($request->id)->update($request->all());
 

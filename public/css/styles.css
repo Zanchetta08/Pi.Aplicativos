@@ -165,3 +165,7 @@ header {
 .container {
     padding: 70px;
 }
+
+#errors-preencher {
+    color: red;
+}
