@@ -9,10 +9,10 @@
                 <div id="info-container" class="col-md-6">
                     <h1>{{ $treinamento->nome }}</h1>
                     <p>Carga horária: {{ $treinamento->cargaHr }} horas</p>
-                    <p>Início das inscrições: {{ $treinamento->inscIni }}</p>
-                    <p>Fim das inscrições: {{ $treinamento->InscFim }}</p>
-                    <p>Início do treinamento: {{ $treinamento->treiIni }}</p>
-                    <p>Fim do treinamento: {{ $treinamento->treiFim }}</p>
+                    <p>Início das inscrições: {{ date('d/m/Y' , strtotime($treinamento->inscIni)) }}</p>
+                    <p>Fim das inscrições: {{ date('d/m/Y' , strtotime($treinamento->inscFim)) }}</p>
+                    <p>Início do treinamento: {{ date('d/m/Y' , strtotime($treinamento->treiIni)) }}</p>
+                    <p>Fim do treinamento: {{ date('d/m/Y' , strtotime($treinamento->treiFim)) }}</p>
                     <p>Quantidade mínima de participantes: {{ $treinamento->quantMin }}</p>
                     <p>Quantidade máxima de participantes: {{ $treinamento->quantMax }}</p>
                     <h3>Sobre o treinamento:</h3>
