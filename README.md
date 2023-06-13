@@ -120,29 +120,25 @@ npm install electron
 ```
 npm run electron
 ```
-* Executar o framework (Certifique-se de ter instalado o PHPUnit como uma dependência em seu projeto usando o Composer.)
 
-```
-npm install electron
-```
-
-* Inicialização do programa
-
-```
-npm run electron
-```
 
 
 </br></br>
 ## ⚙️ Funcionamento
 
 * O aplicativo se inicia com o login/cadastro
+    * Você deve entrar, utilizando uma conta de Administrador, Aluno, Empresa ou Mentor.
 * No menu inicial existem as seguintes opções disponíveis:
-  * Dashboard
-  * Treinamentos disponíveis
-  * Criação de treinamentos
-  * Vagas
-  * Criação de vagas
+  #### Dashboard:
+   - Nessa opção, você poderá ver (como aluno), os treinamentos e as vagas que você se inscreveu.
+  #### Treinamentos disponíveis
+   - Nessa opção, você (como aluno) poderá visualizar todos os treinamentos existentes, podendo se inscrever e saber mais a respeito de novos  treinamentos. 
+  #### Criação de treinamentos
+   - Nessa opção, você (como administrador) poderá criar novos treinamentos. 
+  #### Vagas
+   - Nessa opção, você (como aluno) poderá visualizar visualizar todas as vagas existentes, podendo se inscrever caso você tenha concluído algum treinamento.
+  #### Criação de vagas
+   - Nessa opção, você (como empresa) poderá criar novas vagas de emprego.
 
 
 #### Menu do programa
