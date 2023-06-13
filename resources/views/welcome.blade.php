@@ -14,7 +14,7 @@
         @if($search)
         <h2>Buscando por: {{ $search }}</h2>
         @else
-        <h2>Proximos Treinamentos</h2>
+        <h2>Próximos Treinamentos</h2>
         <p class="subtitle">Veja os treinamentos dos próximos dias</p>
         @endif
             

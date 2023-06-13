@@ -38,10 +38,10 @@
                                 <a href="/treinamentos/criar" class="nav-link">Criar Treinamentos</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/vagas" class="nav-link">Vaga</a>
+                                <a href="/vagas" class="nav-link">Vagas</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/vagas/criar" class="nav-link">Criar Vaga</a>
+                                <a href="/vagas/criar" class="nav-link">Criar Vagas</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

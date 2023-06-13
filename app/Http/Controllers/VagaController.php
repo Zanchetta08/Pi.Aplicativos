@@ -8,6 +8,10 @@ use App\Models\Vaga;
 
 use App\Http\Requests\StoreUpdateFromRequestVagas;
 
+
+
+use App\Models\Treinamento;
+
 class VagaController extends Controller
 {
     
@@ -48,16 +52,36 @@ class VagaController extends Controller
     public function show($id){
 
         $vaga = Vaga::findOrFail($id);
+        $user = auth()->user();
+        $hasUserJoined = false;
+        if($user) {
+            $userVagas = $user->vagas->toArray();
 
-        return view('vagas.mostrar',['vaga' => $vaga]);
+            foreach($userVagas as $userVaga) {
+                if($userVaga['id'] == $id) {
+                    $hasUserJoined = true;
+                }
+            }
+        }
+        
+        $hasUserNota = false;
+        if($user) {
 
+            foreach($user->treinamentos as $userTreinamento) {
+                if($userTreinamento->pivot->nota2 != -1) {
+                    $hasUserNota = true;
+                }
+            }
+        }
+
+        return view('vagas.mostrar', ['vaga' => $vaga, 'hasUserJoined' => $hasUserJoined, 'hasUserNota' => $hasUserNota]);
     }
 
     public function destroy($id){
 
         Vaga::findOrFail($id)->delete();
 
-        return redirect('/vagas')->with('msg', 'Vaga excluida !!!');
+        return redirect('/vagas')->with('msg', 'Vaga excluída com sucesso!');
 
     }
 
@@ -73,7 +97,7 @@ class VagaController extends Controller
 
         Vaga::findOrFail($request->id)->update($request->all());
 
-        return redirect('/vagas')->with('msg', 'Vaga editada com sucesso !!!');
+        return redirect('/vagas')->with('msg', 'Vaga editada com sucesso!');
 
     }
 
@@ -83,6 +107,19 @@ class VagaController extends Controller
 
         $user->vagas()->attach($id);
 
-        return redirect('/vagas')->with('msg', 'Fazer msg'); 
+        $vaga = Vaga::findOrFail($id);
+
+        return redirect('/vagas')->with('msg', 'Candidatado na vaga: ' . $vaga->titulo);
+    }
+
+    public function leaveVaga($id) {
+        
+        $user = auth()->user();
+
+        $user->vagas()->detach($id);
+
+        $vaga = Vaga::findOrFail($id);
+        
+        return redirect('/vagas')->with('msg', 'Candidatura cancelada na vaga: ' . $vaga->titulo);
     }
 }
