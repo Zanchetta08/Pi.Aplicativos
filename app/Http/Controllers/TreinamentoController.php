@@ -75,4 +75,23 @@ class TreinamentoController extends Controller
 
         return redirect('/')->with('msg', 'Treinamento editado com sucesso!');
     }
+
+    public function joinTreinamento($id) {
+        
+        $user = auth()->user();
+
+        $user->treinamentos()->attach($id);
+
+        $treinamento = Treinamento::findOrFail($id);
+
+        return redirect('/')->with('msg', 'Presença confirmada no treinamento ' . $treinamento->nome . '!!');
+    }
+
+    public function meusTreinamentos() {
+        $user = auth()->user();
+        $treinamentos = $user->treinamentos;
+        $treinamentosAsParticipant = $user->treinamentos;
+
+        return view('treinamentos.meusTreinamentos', ['treinamentos' => $treinamentos, 'treinamentosAsParticipant' => $treinamentosAsParticipant]);
+    }
 }

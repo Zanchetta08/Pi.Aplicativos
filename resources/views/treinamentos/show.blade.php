@@ -17,7 +17,16 @@
                     <p>Quantidade máxima de participantes: {{ $treinamento->quantMax }}</p>
                     <h3>Sobre o treinamento:</h3>
                     <p class="event-description"> {{ $treinamento->descricao }}</p>
-                    <a href="" class="btn btn-primary" id="event-submit">Confirmar Presença</a>
+                    <form action="/treinamentos/join/{{ $treinamento->id }}" method="POST">
+                        @csrf
+                        <a href="/treinamentos/join/{{ $treinamento->id }}" 
+                            class="btn btn-primary" 
+                            id="event-submit" 
+                            onClick="event.preventDefault();
+                            this.closest('form').submit();">
+                            Confirmar Presença
+                        </a>
+                    </form>
                     <a href="/treinamentos/edit/{{ $treinamento->id }}" class="btn btn-info edit-btn">Editar</a> 
                     <form action="/treinamentos/{{ $treinamento->id }}" method="POST">
                         @csrf
